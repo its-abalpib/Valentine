@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smriti, Be My Valentine 💖</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 40px 50px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      max-width: 90%;
+    }
+
+    h1 {
+      color: #e6005c;
+      margin-bottom: 10px;
+    }
+
+    #message {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 30px;
+      min-height: 24px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      margin-right: 15px;
+    }
+
+    #yes:hover {
+      background-color: #e6005c;
+      transform: scale(1.05);
+    }
+
+    #no {
+      background-color: #ccc;
+      color: #333;
+      position: absolute;
+    }
+
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      animation: float 3s linear forwards;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>sMriti, will you be my Valentine? 💕</h1>
+    <div id="message"></div>
+    <button id="yes" onclick="yesClicked()">Yes 💖</button>
+    <button id="no">No 🙃</button>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("no");
+    const message = document.getElementById("message");
+
+    let hoverCount = 0;
+
+    const messages = [
+      "👀 Hey… why hovering over No?",
+      "😅 Are you sure about that?",
+      "🥺 That button is kinda suspicious…",
+      "💔 Wow. You’re breaking my heart.",
+      "😤 Okay now you’re just teasing.",
+      "😳 Smriti… the Yes button is RIGHT THERE.",
+      "💖 Destiny says click Yes.",
+      "😌 Accept it. We’re Valentines."
+    ];
+
+    noBtn.addEventListener("mouseover", () => {
+      hoverCount++;
+
+      if (hoverCount <= messages.length) {
+        message.textContent = messages[hoverCount - 1];
+      } else {
+        message.textContent = "😂 Nice try. It’s a Yes.";
+      }
+
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    });
+
+    function yesClicked() {
+      document.body.innerHTML = `
+        <h1 style="color:white;font-size:3rem;text-align:center;">
+          YAYYY 💘🥰<br>
+          sMriti is Biplab's valentine 💖
+        </h1>
+      `;
+      spawnHearts();
+    }
+
+    function spawnHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+      }, 200);
+    }
+  </script>
+
+</body>
+</html>
